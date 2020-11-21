@@ -32,12 +32,12 @@ def line_cnn_all_conv(
     new_window_width = window_width // 2
     new_window_stride = window_stride // 2
 
-    # Your code below (Lab 2)
+    # Can amend below, if required. 
     model.add(
         Conv2D(128, (new_height, new_window_width), (new_height, new_window_stride), activation="relu", padding="same")
     )
     model.add(Dropout(0.2))
-    # Your code above (Lab 2)
+
     # Shape is now (1, num_windows, 128)
     num_windows = new_width // new_window_stride
 

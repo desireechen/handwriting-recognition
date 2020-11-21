@@ -10,7 +10,7 @@ def lenet(input_shape: Tuple[int, ...], output_shape: Tuple[int, ...]) -> Model:
     """Return LeNet Keras model."""
     num_classes = output_shape[0]
 
-    # Your code below (Lab 2)
+    # Can amend below, if required.
     model = Sequential()
     if len(input_shape) < 3:
         model.add(Lambda(lambda x: tf.expand_dims(x, -1), input_shape=input_shape, name='expand_dims'))
@@ -23,6 +23,5 @@ def lenet(input_shape: Tuple[int, ...], output_shape: Tuple[int, ...]) -> Model:
     model.add(Dense(128, activation="relu"))
     model.add(Dropout(0.2))
     model.add(Dense(num_classes, activation="softmax"))
-    # Your code above (Lab 2)
 
     return model

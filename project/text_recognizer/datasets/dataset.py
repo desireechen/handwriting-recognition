@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse
 import os
 
-from text_recognizer import util
+from text_recognizer import util  # This contains the utility functions for text_recognizer module. 
 
 
 class Dataset:

@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 import unittest
 
-from text_recognizer.character_predictor import CharacterPredictor
+from text_recognizer.character_predictor import CharacterPredictor  # CharacterPredictor recognizes a given image of a single handwritten character,
 
 SUPPORT_DIRNAME = Path(__file__).parents[0].resolve() / "support" / "emnist"
 
@@ -14,7 +14,7 @@ class TestCharacterPredictor(unittest.TestCase):
     """Tests for the CharacterPredictor class."""
 
     def test_filename(self):
-        """Test that CharacterPredictor correctly predicts on a single image, for serveral test images."""
+        """Test that CharacterPredictor correctly predicts on a single image, for several test images."""
         predictor = CharacterPredictor()
 
         for filename in SUPPORT_DIRNAME.glob("*.png"):

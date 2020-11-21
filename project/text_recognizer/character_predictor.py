@@ -3,8 +3,8 @@ from typing import Tuple, Union
 
 import numpy as np
 
-from text_recognizer.models import CharacterModel
-import text_recognizer.util as util
+from text_recognizer.models import CharacterModel  # CharacterModel works on datasets providing images, with one-hot labels.
+import text_recognizer.util as util # text_recognizer.util contains the utility functions for text_recognizer module.
 
 
 class CharacterPredictor:

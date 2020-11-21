@@ -1,7 +1,7 @@
 """Utility functions for text_recognizer module."""
-# Hide lines below until Lab 8
-import base64
-# Hide lines above until Lab 8
+# Hide lines below until web deployment
+# import base64
+# Hide lines above until web deployment
 from concurrent.futures import as_completed, ThreadPoolExecutor
 from pathlib import Path
 from typing import Union
@@ -39,16 +39,16 @@ def read_image(image_uri: Union[Path, str], grayscale=False) -> np.array:
     return img
 
 
-# Hide lines below until Lab 8
-def read_b64_image(b64_string, grayscale=False):
-    """Load base64-encoded images."""
-    imread_flag = cv2.IMREAD_GRAYSCALE if grayscale else cv2.IMREAD_COLOR
-    try:
-        _, b64_data = b64_string.split(",")
-        return cv2.imdecode(np.frombuffer(base64.b64decode(b64_data), np.uint8), imread_flag)
-    except Exception as e:
-        raise ValueError("Could not load image from b64 {}: {}".format(b64_string, e))
-# Hide lines above until Lab 8
+# Hide lines below until web deployment
+# def read_b64_image(b64_string, grayscale=False):
+#     """Load base64-encoded images."""
+#     imread_flag = cv2.IMREAD_GRAYSCALE if grayscale else cv2.IMREAD_COLOR
+#     try:
+#         _, b64_data = b64_string.split(",")
+#         return cv2.imdecode(np.frombuffer(base64.b64decode(b64_data), np.uint8), imread_flag)
+#     except Exception as e:
+#         raise ValueError("Could not load image from b64 {}: {}".format(b64_string, e))
+# Hide lines above until web deployment
 
 
 def write_image(image: np.ndarray, filename: Union[Path, str]) -> None:
@@ -88,13 +88,13 @@ def download_url(url, filename):
 
 
 # Hide lines below until Lab 6
-def download_urls(urls, filenames):
-    """Download urls to filenames in a multi-threaded way."""
-    with ThreadPoolExecutor() as executor:
-        futures = [executor.submit(urlretrieve, url, filename) for url, filename in zip(urls, filenames)]
-        for future in tqdm(as_completed(futures), total=len(futures)):
-            try:
-                future.result()
-            except Exception as e:  # pylint: disable=broad-except
-                print("Error", e)
+# def download_urls(urls, filenames):
+#     """Download urls to filenames in a multi-threaded way."""
+#     with ThreadPoolExecutor() as executor:
+#         futures = [executor.submit(urlretrieve, url, filename) for url, filename in zip(urls, filenames)]
+#         for future in tqdm(as_completed(futures), total=len(futures)):
+#             try:
+#                 future.result()
+#             except Exception as e:  # pylint: disable=broad-except
+#                 print("Error", e)
 # Hide lines above until Lab 6

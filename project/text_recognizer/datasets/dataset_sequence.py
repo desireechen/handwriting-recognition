@@ -1,6 +1,6 @@
 """DatasetSequence class."""
 import numpy as np
-from tensorflow.keras.utils import Sequence
+from tensorflow.keras.utils import Sequence  # This contains a base object for fitting to a sequence of data, such as a dataset. 
 
 
 def _shuffle(x, y):
@@ -48,6 +48,7 @@ class DatasetSequence(Sequence):
 
         return batch_x, batch_y
 
+    # Function below used to modify dataset between epochs. 
     def on_epoch_end(self) -> None:
         """Shuffle data."""
         self.x, self.y = _shuffle(self.x, self.y)
