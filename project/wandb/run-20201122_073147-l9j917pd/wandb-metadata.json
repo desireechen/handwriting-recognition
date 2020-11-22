@@ -18,9 +18,10 @@
         "--gpu=-1",
         "{\"dataset\": \"EmnistDataset\", \"model\": \"CharacterModel\", \"network\": \"lenet\", \"train_args\": {\"batch_size\": 128}, \"experiment_group\": \"Sample Experiments\"}"
     ],
-    "state": "running",
+    "state": "finished",
     "jobType": null,
     "mode": "run",
     "project": "handwriting-recognition-project_training",
-    "heartbeatAt": "2020-11-22T09:38:21.594646"
+    "heartbeatAt": "2020-11-22T09:47:08.137714",
+    "exitcode": 0
 }
