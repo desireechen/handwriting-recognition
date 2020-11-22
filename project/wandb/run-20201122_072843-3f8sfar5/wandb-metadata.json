@@ -1,0 +1,27 @@
+{
+    "root": "/home/desiree/handwriting-recognition",
+    "program": "training/run_experiment.py",
+    "git": {
+        "remote": "https://github.com/desireechen/handwriting-recognition.git",
+        "commit": "64931c7d21086c9d9a03db22bcd84f15b578c5ac"
+    },
+    "email": "desiree_chen@aiap.sg",
+    "codePath": "project/training/run_experiment.py",
+    "startedAt": "2020-11-22T07:28:43.506273",
+    "host": "desiree-VirtualBox",
+    "username": "desiree",
+    "executable": "/home/desiree/anaconda3/envs/fsdl-text-recognizer/bin/python",
+    "os": "Linux-5.4.0-54-generic-x86_64-with-debian-bullseye-sid",
+    "python": "3.7.9",
+    "cpu_count": 1,
+    "args": [
+        "--gpu=-1",
+        "{\"dataset\": \"EmnistDataset\", \"model\": \"CharacterModel\", \"network\": \"mlp\", \"network_args\": {\"num_layers\": 2}, \"train_args\": {\"batch_size\": 256}, \"experiment_group\": \"Sample Experiments\"}"
+    ],
+    "state": "finished",
+    "jobType": null,
+    "mode": "run",
+    "project": "handwriting-recognition-project_training",
+    "heartbeatAt": "2020-11-22T07:31:34.501742",
+    "exitcode": 0
+}

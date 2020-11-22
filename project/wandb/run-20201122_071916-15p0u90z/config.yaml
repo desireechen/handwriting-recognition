@@ -1,0 +1,31 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.8.31
+    code_path: code/project/training/run_experiment.py
+    framework: tensorflow
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.7.9
+dataset:
+  desc: null
+  value: EmnistDataset
+experiment_group:
+  desc: null
+  value: null
+gpu_ind:
+  desc: null
+  value: 1
+model:
+  desc: null
+  value: CharacterModel
+network:
+  desc: null
+  value: mlp
+train_args:
+  desc: null
+  value:
+    batch_size: 512
+    epochs: 16

@@ -2,9 +2,9 @@
 from typing import Tuple
 
 import tensorflow as tf
-from tensorflow.keras.layers import Conv2D, Dropout, MaxPooling2D, Reshape, Lambda, Permute
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.models import Model as KerasModel
+from tensorflow.keras.layers import Conv2D, Dropout, MaxPooling2D, Reshape, Lambda, Permute
 
 
 def line_cnn_all_conv(

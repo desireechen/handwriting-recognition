@@ -1,0 +1,241 @@
+diff --git a/project/text_recognizer/models/line_model.py b/project/text_recognizer/models/line_model.py
+index c5b5e9d..26bf91f 100644
+--- a/project/text_recognizer/models/line_model.py
++++ b/project/text_recognizer/models/line_model.py
+@@ -4,11 +4,11 @@ from typing import Callable, Dict, Tuple
+ import editdistance
+ import numpy as np
+ 
+-from text_recognizer.datasets.emnist_lines_dataset import EmnistLinesDataset
++from text_recognizer.datasets.emnist_lines_dataset import EmnistLinesDataset  # This downloads the synthetic handwriting lines dataset made from EMNIST characters. 
+ from text_recognizer.datasets.dataset_sequence import DatasetSequence
+-from text_recognizer.models.base import Model
+-from text_recognizer.networks import line_cnn_all_conv  # from text_recognizer.networks.line_cnn_all_conv import line_cnn_all_conv
+-
++from text_recognizer.models.base import Model  # This is a Base class, to be subclassed by predictors for specific type of data. Model class, to be extended by specific types of models.
++from text_recognizer.networks.line_cnn_all_conv import line_cnn_all_conv  # CNN-based model for recognizing handwritten text. 
++# original was from text_recognizer.networks import line_cnn_all_conv
+ 
+ class LineModel(Model):
+     """Model for predicting a string from an image of a handwritten line of text."""
+diff --git a/project/text_recognizer/models/line_model_ctc.py b/project/text_recognizer/models/line_model_ctc.py
+index a980f0a..c135edb 100644
+--- a/project/text_recognizer/models/line_model_ctc.py
++++ b/project/text_recognizer/models/line_model_ctc.py
+@@ -6,10 +6,10 @@ import numpy as np
+ import tensorflow.keras.backend as K
+ from tensorflow.keras.models import Model as KerasModel
+ 
++from text_recognizer.datasets import EmnistLinesDataset  # This downloads the synthetic handwriting lines dataset made from EMNIST characters. 
+ from text_recognizer.datasets.dataset_sequence import DatasetSequence
+-from text_recognizer.datasets import EmnistLinesDataset
+-from text_recognizer.models.base import Model
+-from text_recognizer.networks.line_lstm_ctc import line_lstm_ctc
++from text_recognizer.models.base import Model  # This is a Base class, to be subclassed by predictors for specific type of data. Model class, to be extended by specific types of models.
++from text_recognizer.networks.line_lstm_ctc import line_lstm_ctc  # LSTM with CTC for handwritten text recognition within a line.
+ 
+ 
+ class LineModelCtc(Model):
+diff --git a/project/text_recognizer/networks/lenet.py b/project/text_recognizer/networks/lenet.py
+index c33793b..94c6fd2 100644
+--- a/project/text_recognizer/networks/lenet.py
++++ b/project/text_recognizer/networks/lenet.py
+@@ -2,8 +2,8 @@
+ from typing import Tuple
+ 
+ import tensorflow as tf
+-from tensorflow.keras.layers import Conv2D, Dense, Dropout, Flatten, Lambda, MaxPooling2D
+ from tensorflow.keras.models import Sequential, Model
++from tensorflow.keras.layers import Conv2D, Dense, Dropout, Flatten, Lambda, MaxPooling2D
+ 
+ 
+ def lenet(input_shape: Tuple[int, ...], output_shape: Tuple[int, ...]) -> Model:
+diff --git a/project/text_recognizer/networks/line_cnn_all_conv.py b/project/text_recognizer/networks/line_cnn_all_conv.py
+index 3f97914..a5d16f1 100644
+--- a/project/text_recognizer/networks/line_cnn_all_conv.py
++++ b/project/text_recognizer/networks/line_cnn_all_conv.py
+@@ -2,9 +2,9 @@
+ from typing import Tuple
+ 
+ import tensorflow as tf
+-from tensorflow.keras.layers import Conv2D, Dropout, MaxPooling2D, Reshape, Lambda, Permute
+ from tensorflow.keras.models import Sequential
+ from tensorflow.keras.models import Model as KerasModel
++from tensorflow.keras.layers import Conv2D, Dropout, MaxPooling2D, Reshape, Lambda, Permute
+ 
+ 
+ def line_cnn_all_conv(
+diff --git a/project/text_recognizer/networks/line_lstm_ctc.py b/project/text_recognizer/networks/line_lstm_ctc.py
+index b3dc78a..b1c005c 100644
+--- a/project/text_recognizer/networks/line_lstm_ctc.py
++++ b/project/text_recognizer/networks/line_lstm_ctc.py
+@@ -3,9 +3,9 @@ from tensorflow.keras.layers import Dense, Input, Reshape, TimeDistributed, Lamb
+ from tensorflow.keras.models import Model as KerasModel
+ import tensorflow.keras.backend as K
+ 
+-from text_recognizer.networks.lenet import lenet
+-from text_recognizer.networks.misc import slide_window
+-from text_recognizer.networks.ctc import ctc_decode
++from text_recognizer.networks.lenet import lenet  # This is to return LeNet Keras model.
++from text_recognizer.networks.misc import slide_window  # This is a neural network functionality.
++from text_recognizer.networks.ctc import ctc_decode  # Decode output of a softmax. Uses greedy (best path) search.
+ 
+ 
+ def line_lstm_ctc(input_shape, output_shape, window_width=28, window_stride=14):  # pylint: disable=too-many-locals
+@@ -27,7 +27,7 @@ def line_lstm_ctc(input_shape, output_shape, window_width=28, window_stride=14):
+     # Convert the lstm outputs to softmax outputs.
+     # Note that lstms expect a input of shape (num_batch_size, num_timesteps, feature_length).
+ 
+-    # Your code below (Lab 3)
++    # Can amend below, if required.
+     image_reshaped = Reshape((image_height, image_width, 1))(image_input)
+     # (image_height, image_width, 1)
+ 
+@@ -47,7 +47,7 @@ def line_lstm_ctc(input_shape, output_shape, window_width=28, window_stride=14):
+ 
+     softmax_output = Dense(num_classes, activation="softmax", name="softmax_output")(lstm_output)
+     # (num_windows, num_classes)
+-    # Your code above (Lab 3)
++    # Can amend above, if required.
+ 
+     input_length_processed = Lambda(
+         lambda x, num_windows=None: x * num_windows, arguments={"num_windows": num_windows}
+diff --git a/project/text_recognizer/networks/mlp.py b/project/text_recognizer/networks/mlp.py
+index 9d8c3e8..632349e 100644
+--- a/project/text_recognizer/networks/mlp.py
++++ b/project/text_recognizer/networks/mlp.py
+@@ -1,7 +1,7 @@
+ """Define mlp network function."""
+ from typing import Tuple
+ 
+-from tensorflow.keras.models import Model, Sequential
++from tensorflow.keras.models import Sequential, Model
+ from tensorflow.keras.layers import Dense, Dropout, Flatten
+ 
+ 
+diff --git a/project/text_recognizer/weights/CharacterModel_EmnistDataset_mlp_weights.h5 b/project/text_recognizer/weights/CharacterModel_EmnistDataset_mlp_weights.h5
+index 96c2e10..d2b723e 100644
+Binary files a/project/text_recognizer/weights/CharacterModel_EmnistDataset_mlp_weights.h5 and b/project/text_recognizer/weights/CharacterModel_EmnistDataset_mlp_weights.h5 differ
+diff --git a/project/training/run_experiment.py b/project/training/run_experiment.py
+index 1ef136b..a8cebf6 100755
+--- a/project/training/run_experiment.py
++++ b/project/training/run_experiment.py
+@@ -7,8 +7,8 @@ from typing import Dict
+ import os
+ 
+ # Hide lines below until Weights & Biases is being used
+-# import wandb
+-# from training.gpu_manager import GPUManager
++import wandb
++from training.gpu_manager import GPUManager
+ # Hide lines above until Weights & Biases is being used
+ 
+ from training.util import train_model  # training.util contains function to train a model. 
+@@ -76,8 +76,8 @@ def run_experiment(experiment_config: Dict, save_weights: bool, gpu_ind: int, us
+     experiment_config["gpu_ind"] = gpu_ind
+ 
+     # Hide lines below until Weights & Biases is being used
+-    # if use_wandb:
+-    #     wandb.init(config=experiment_config)
++    if use_wandb:
++        wandb.init(config=experiment_config)
+     # Hide lines above until Weights & Biases is being used
+ 
+     train_model(
+@@ -91,8 +91,8 @@ def run_experiment(experiment_config: Dict, save_weights: bool, gpu_ind: int, us
+     print(f"Test evaluation: {score}")
+ 
+     # Hide lines below until Weights & Biases is being used
+-    # if use_wandb:
+-    #     wandb.log({"test_metric": score})
++    if use_wandb:
++        wandb.log({"test_metric": score})
+     # Hide lines above until Weights & Biases is being used
+ 
+     if save_weights:
+@@ -127,9 +127,9 @@ def main():
+     args = _parse_args()
+ 
+     # Hide lines below until Weights & Biases is being used
+-    # if args.gpu < 0:
+-    #     gpu_manager = GPUManager()
+-    #     args.gpu = gpu_manager.get_free_gpu()  # Blocks until one is available
++    if args.gpu < 0:
++        gpu_manager = GPUManager()
++        args.gpu = gpu_manager.get_free_gpu()  # Blocks until one is available
+     # Hide lines above until Weights & Biases is being used
+ 
+     experiment_config = json.loads(args.experiment_config)
+diff --git a/project/training/util.py b/project/training/util.py
+index f99399a..b76db0e 100644
+--- a/project/training/util.py
++++ b/project/training/util.py
+@@ -4,31 +4,31 @@ from time import time
+ from tensorflow.keras.callbacks import EarlyStopping, Callback
+ 
+ # Hide lines below until Weights & Biases is being used
+-# import wandb
+-# from wandb.keras import WandbCallback
++import wandb
++from wandb.keras import WandbCallback
+ # Hide lines above until Weights & Biases is being used
+ 
+ from text_recognizer.datasets.dataset import Dataset  # This is a simple abstract class for datasets. Dataset class to be extended by dataset-specific classes.
+-from text_recognizer.models.base import Model  # This is a Base class, to be subclassed by predictors for specific type of data. Model class, to be extended by specific types of models.
++from text_recognizer.models.base import Model  # This is a Base class, to be subclassed by predictors for specific type of data. Model class to be extended by model-specific classes.
+ 
+ EARLY_STOPPING = True
+ 
+ 
+ # Hide lines below until Weights & Biases is being used
+-# class WandbImageLogger(Callback):
+-#     """Custom callback for logging image predictions"""
+-
+-#     def __init__(self, model_wrapper: Model, dataset: Dataset, example_count: int = 4):
+-#         super().__init__()
+-#         self.model_wrapper = model_wrapper
+-#         self.val_images = dataset.x_test[:example_count]  # type: ignore
+-
+-#     def on_epoch_end(self, epoch, logs=None):
+-#         images = [
+-#             wandb.Image(image, caption="{}: {}".format(*self.model_wrapper.predict_on_image(image)))
+-#             for i, image in enumerate(self.val_images)
+-#         ]
+-#         wandb.log({"examples": images}, commit=False)
++class WandbImageLogger(Callback):
++    """Custom callback for logging image predictions"""
++
++    def __init__(self, model_wrapper: Model, dataset: Dataset, example_count: int = 4):
++        super().__init__()
++        self.model_wrapper = model_wrapper
++        self.val_images = dataset.x_test[:example_count]  # type: ignore
++
++    def on_epoch_end(self, epoch, logs=None):
++        images = [
++            wandb.Image(image, caption="{}: {}".format(*self.model_wrapper.predict_on_image(image)))
++            for i, image in enumerate(self.val_images)
++        ]
++        wandb.log({"examples": images}, commit=False)
+ # Hide lines above until Weights & Biases is being used
+ 
+ 
+@@ -41,11 +41,11 @@ def train_model(model: Model, dataset: Dataset, epochs: int, batch_size: int, us
+         callbacks.append(early_stopping)
+ 
+     # Hide lines below until Weights & Biases is being used
+-    # if use_wandb:
+-    #     image_callback = WandbImageLogger(model, dataset)
+-    #     wandb_callback = WandbCallback()
+-    #     callbacks.append(image_callback)
+-    #     callbacks.append(wandb_callback)
++    if use_wandb:
++        image_callback = WandbImageLogger(model, dataset)
++        wandb_callback = WandbCallback()
++        callbacks.append(image_callback)
++        callbacks.append(wandb_callback)
+     # Hide lines above until Weights & Biases is being used
+ 
+     model.network.summary()
+diff --git a/project/wandb/debug.log b/project/wandb/debug.log
+index 796f790..96b43a4 100644
+Binary files a/project/wandb/debug.log and b/project/wandb/debug.log differ

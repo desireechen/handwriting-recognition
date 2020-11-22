@@ -4,11 +4,11 @@ from typing import Callable, Dict, Tuple
 import editdistance
 import numpy as np
 
-from text_recognizer.datasets.emnist_lines_dataset import EmnistLinesDataset
+from text_recognizer.datasets.emnist_lines_dataset import EmnistLinesDataset  # This downloads the synthetic handwriting lines dataset made from EMNIST characters. 
 from text_recognizer.datasets.dataset_sequence import DatasetSequence
-from text_recognizer.models.base import Model
-from text_recognizer.networks import line_cnn_all_conv  # from text_recognizer.networks.line_cnn_all_conv import line_cnn_all_conv
-
+from text_recognizer.models.base import Model  # This is a Base class, to be subclassed by predictors for specific type of data. Model class, to be extended by specific types of models.
+from text_recognizer.networks.line_cnn_all_conv import line_cnn_all_conv  # CNN-based model for recognizing handwritten text. 
+# original was from text_recognizer.networks import line_cnn_all_conv
 
 class LineModel(Model):
     """Model for predicting a string from an image of a handwritten line of text."""

@@ -2,8 +2,8 @@
 from typing import Tuple
 
 import tensorflow as tf
-from tensorflow.keras.layers import Conv2D, Dense, Dropout, Flatten, Lambda, MaxPooling2D
 from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import Conv2D, Dense, Dropout, Flatten, Lambda, MaxPooling2D
 
 
 def lenet(input_shape: Tuple[int, ...], output_shape: Tuple[int, ...]) -> Model:

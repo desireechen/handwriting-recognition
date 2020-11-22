@@ -1,7 +1,7 @@
 """Define mlp network function."""
 from typing import Tuple
 
-from tensorflow.keras.models import Model, Sequential
+from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense, Dropout, Flatten
 
 

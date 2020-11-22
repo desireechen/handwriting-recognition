@@ -7,21 +7,21 @@ import json
 from typing import Tuple
 from ast import literal_eval
 
-DEFAULT_CONFIG = {
-    "dataset": "IamLinesDataset",
-    "dataset_args": {"subsample_fraction": 0.33},
-    "model": "LineModel",
-    "network": "line_lstm_ctc",
-    "train_args": {"batch_size": 128, "epochs": 10},
-}
-
 # DEFAULT_CONFIG = {
-#     "dataset": "EmnistDataset",
+#     "dataset": "IamLinesDataset",
 #     "dataset_args": {"subsample_fraction": 0.33},
-#     "model": "CharacterModel",
-#     "network": "mlp",
-#     "train_args": {"batch_size": 128, "epochs": 5},
+#     "model": "LineModel",
+#     "network": "line_lstm_ctc",
+#     "train_args": {"batch_size": 128, "epochs": 10},
 # }
+
+DEFAULT_CONFIG = {
+    "dataset": "EmnistDataset",
+    "dataset_args": {"subsample_fraction": 0.33},
+    "model": "CharacterModel",
+    "network": "mlp",
+    "train_args": {"batch_size": 128, "epochs": 5},
+}
 
 def args_to_json(default_config: dict, preserve_args: tuple = ("gpu", "save")) -> Tuple[dict, list]:
     """Convert command line arguments to nested config values

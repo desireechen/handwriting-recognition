@@ -3,9 +3,9 @@ from tensorflow.keras.layers import Dense, Input, Reshape, TimeDistributed, Lamb
 from tensorflow.keras.models import Model as KerasModel
 import tensorflow.keras.backend as K
 
-from text_recognizer.networks.lenet import lenet
-from text_recognizer.networks.misc import slide_window
-from text_recognizer.networks.ctc import ctc_decode
+from text_recognizer.networks.lenet import lenet  # This is to return LeNet Keras model.
+from text_recognizer.networks.misc import slide_window  # This is a neural network functionality.
+from text_recognizer.networks.ctc import ctc_decode  # Decode output of a softmax. Uses greedy (best path) search.
 
 
 def line_lstm_ctc(input_shape, output_shape, window_width=28, window_stride=14):  # pylint: disable=too-many-locals
@@ -27,7 +27,7 @@ def line_lstm_ctc(input_shape, output_shape, window_width=28, window_stride=14):
     # Convert the lstm outputs to softmax outputs.
     # Note that lstms expect a input of shape (num_batch_size, num_timesteps, feature_length).
 
-    # Your code below (Lab 3)
+    # Can amend below, if required.
     image_reshaped = Reshape((image_height, image_width, 1))(image_input)
     # (image_height, image_width, 1)
 
@@ -47,7 +47,7 @@ def line_lstm_ctc(input_shape, output_shape, window_width=28, window_stride=14):
 
     softmax_output = Dense(num_classes, activation="softmax", name="softmax_output")(lstm_output)
     # (num_windows, num_classes)
-    # Your code above (Lab 3)
+    # Can amend above, if required.
 
     input_length_processed = Lambda(
         lambda x, num_windows=None: x * num_windows, arguments={"num_windows": num_windows}
