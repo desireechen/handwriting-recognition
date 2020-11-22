@@ -20,7 +20,7 @@ The data is downloaded to `data/raw` folder. The processed data is stored in `da
 
 ## Networks
 
-4 main networks: Multi-layer perceptron (MLP), LeNet, CNN, LSTM
+4 main networks: Multi-layer perceptron (MLP), LeNet, CNN, LSTM.
 
 ### Training
 
