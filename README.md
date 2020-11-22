@@ -40,6 +40,6 @@ Sample training code: `training/run_experiment.py '{"dataset": "EmnistDataset", 
 
 ### Weights & Biases (is also somewhat similar to polyaxon)
 
-I used Weights & Biases to track my experiments and for hyperparameter tuning. Project page is [here](https://wandb.ai/desiree/handwriting-recognition-project_training?workspace=user-desiree). Experiments can be run individually (view the run titled absurd-microwave in my Weights & Biases page) or in multiples. Multiple experiments are defined in json file (`training/experiments/sample.json`). Screenshot below is a sample output in the terminal.
+I used Weights & Biases to track my experiments and for hyperparameter tuning. Project page is [here](https://wandb.ai/desiree/handwriting-recognition-project_training?workspace=user-desiree). Experiments can be run individually (view the run titled absurd-microwave in my Weights & Biases page) or in multiples. Multiple experiments are defined in json file (`training/experiments/sample.json`).
 
 Sweeps are used for hyperparameter tuning. Hyperparameter values are defined in `training/sweep_emnist.yaml` file. 
