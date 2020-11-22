@@ -34,7 +34,7 @@ Sample training code: `training/run_experiment.py '{"dataset": "EmnistDataset", 
 
 `dataset_args` such as `subsample_function`, `max_length`, `max_overlap`
 
-`network_args` such as `num_layers`, `dropout_amount`, `layer_size`, window_width`, `window_stride`
+`network_args` such as `num_layers`, `dropout_amount`, `layer_size`, `window_width`, `window_stride`
 
 `train_args` such as `batch_size`, `epochs`
 
