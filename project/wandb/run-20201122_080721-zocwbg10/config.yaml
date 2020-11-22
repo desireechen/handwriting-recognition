@@ -1,0 +1,33 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.8.31
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.7.9
+dataset:
+  desc: null
+  value: EmnistDataset
+model:
+  desc: null
+  value: CharacterModel
+network:
+  desc: null
+  value: mlp
+network_args.dropout_amount:
+  desc: null
+  value: 0.2
+network_args.layer_size:
+  desc: null
+  value: 128
+network_args.num_layers:
+  desc: null
+  value: 6
+train_args.batch_size:
+  desc: null
+  value: 64
+train_args.epochs:
+  desc: null
+  value: 5

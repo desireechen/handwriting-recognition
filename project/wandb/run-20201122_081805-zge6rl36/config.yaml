@@ -1,0 +1,56 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.8.31
+    code_path: code/project/training/run_experiment.py
+    framework: tensorflow
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.7.9
+dataset:
+  desc: null
+  value: EmnistDataset
+dataset_args:
+  desc: null
+  value:
+    subsample_fraction: 0.33
+experiment_group:
+  desc: null
+  value: null
+gpu_ind:
+  desc: null
+  value: 0
+model:
+  desc: null
+  value: CharacterModel
+network:
+  desc: null
+  value: mlp
+network_args:
+  desc: null
+  value:
+    dropout_amount: 0.2
+    layer_size: 128
+    num_layers: 3
+network_args.dropout_amount:
+  desc: null
+  value: 0.2
+network_args.layer_size:
+  desc: null
+  value: 128
+network_args.num_layers:
+  desc: null
+  value: 3
+train_args:
+  desc: null
+  value:
+    batch_size: 64
+    epochs: 5
+train_args.batch_size:
+  desc: null
+  value: 64
+train_args.epochs:
+  desc: null
+  value: 5

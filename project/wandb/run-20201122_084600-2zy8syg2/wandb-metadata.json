@@ -1,0 +1,26 @@
+{
+    "root": "/home/desiree/handwriting-recognition",
+    "program": "training/run_experiment.py",
+    "git": {
+        "remote": "https://github.com/desireechen/handwriting-recognition.git",
+        "commit": "8ba629334258fcc2466b89af47ed7ede3c3b2fc5"
+    },
+    "email": "desiree_chen@aiap.sg",
+    "codePath": "project/training/run_experiment.py",
+    "startedAt": "2020-11-22T08:46:12.957513",
+    "host": "desiree-VirtualBox",
+    "username": "desiree",
+    "executable": "/home/desiree/anaconda3/envs/fsdl-text-recognizer/bin/python",
+    "os": "Linux-5.4.0-54-generic-x86_64-with-debian-bullseye-sid",
+    "python": "3.7.9",
+    "cpu_count": 1,
+    "args": [
+        "{\"dataset\": \"EmnistDataset\", \"dataset_args\": {\"subsample_fraction\": 0.33}, \"model\": \"CharacterModel\", \"network\": \"mlp\", \"train_args\": {\"batch_size\": 64, \"epochs\": 5}, \"network_args\": {\"dropout_amount\": 0.4, \"layer_size\": 128, \"num_layers\": 6}}"
+    ],
+    "state": "finished",
+    "jobType": null,
+    "mode": "run",
+    "project": "handwriting-recognition-project_training",
+    "heartbeatAt": "2020-11-22T08:48:25.880191",
+    "exitcode": 0
+}
