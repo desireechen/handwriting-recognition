@@ -1,0 +1,28 @@
+{
+    "root": "/home/desiree/handwriting-recognition",
+    "program": "training/run_experiment.py",
+    "git": {
+        "remote": "https://github.com/desireechen/handwriting-recognition.git",
+        "commit": "6f690121a9b1ec20a5c34d1fd92256dc0e4ca89f"
+    },
+    "email": "desiree_chen@aiap.sg",
+    "codePath": "project/training/run_experiment.py",
+    "startedAt": "2021-01-09T07:23:44.999543",
+    "host": "desiree-VirtualBox",
+    "username": "desiree",
+    "executable": "/home/desiree/anaconda3/envs/fsdl-text-recognizer/bin/python",
+    "os": "Linux-5.8.0-34-generic-x86_64-with-debian-bullseye-sid",
+    "python": "3.7.9",
+    "cpu_count": 1,
+    "args": [
+        "--gpu=1",
+        "--save",
+        "{\"dataset\": \"IamParagraphsDataset\", \"model\": \"LineDetectorModel\", \"network\": \"fcn\", \"train_args\": {\"batch_size\": 16, \"epochs\": 32}}"
+    ],
+    "state": "killed",
+    "jobType": null,
+    "mode": "run",
+    "project": "handwriting-recognition-project_training",
+    "heartbeatAt": "2021-01-09T07:30:46.965786",
+    "exitcode": 255
+}
