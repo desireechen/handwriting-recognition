@@ -58,7 +58,7 @@ CI/CD is done using CircleCI. `.circleci/config.yml` contains the various steps 
 
 Predictions can be viewed either via a Flask web server or by running a web server in Docker. 
 
-### Use a Flask web server to serve predictions.
+### Use a Flask web server to serve predictions
 
 `cd project`
 `python api/app.py`
