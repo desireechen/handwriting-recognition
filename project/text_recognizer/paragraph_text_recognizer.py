@@ -17,7 +17,7 @@ class ParagraphTextRecognizer:
     def __init__(self):
         self.line_detector_model = LineDetectorModel()
         self.line_detector_model.load_weights()
-        self.line_predictor_model = LineModelCtc(dataset_cls=IamLinesDataset)
+        self.line_predictor_model = LineModelCtc(dataset_cls=IamLinesDataset)  # Need to input dataset_cls argument here, as the default is EmnistLinesDataset in line_model_ctc.py
         self.line_predictor_model.load_weights()
 
     def predict(self, image_or_filename: Union[np.ndarray, str]):
