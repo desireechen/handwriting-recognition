@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Install Shellcheck
           command: |
-            curl -OL https://storage.googleapis.com/shellcheck/shellcheck-stable.linux.x86_64.tar.xz
+            curl -OL https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz
             tar xf shellcheck-stable.linux.x86_64.tar.xz
             sudo mv shellcheck-stable/shellcheck /usr/local/bin
           working_directory: /tmp/shellcheck
@@ -50,18 +50,18 @@ jobs:
           name: run linting
           when: always
           command: |
-            cd lab8 && PYTHONPATH=. ./tasks/lint.sh
+            cd ~/ && PYTHONPATH=. ./project/tasks/lint.sh
 
       - run:
           name: run prediction tests
           when: always
           command: |
-            cd lab8 && PYTHONPATH=. pytest -s text_recognizer/tests/*
+            cd project && PYTHONPATH=. pytest -s text_recognizer/tests/*
 
       - run:
           name: run evaluation tests
           command: |
-            cd lab8 && PYTHONPATH=. pytest -s evaluation/*
+            cd project && PYTHONPATH=. pytest -s evaluation/*
 
       - store_artifacts:
           path: test-reports
