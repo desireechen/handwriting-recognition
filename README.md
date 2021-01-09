@@ -18,9 +18,11 @@ The data is downloaded to `data/raw` folder. The processed data is stored in `da
 
 `LineModelCtc` class recognizes text in an image of a handwritten line of text. The model uses Connectionist Temporal Classification (CTC). In the case of handwriting recognition, I am using Long short-term memory (LSTM) networks. 
 
+`LineDetectorModel` class detects lines of text in an image. 
+
 ## Networks
 
-4 main networks: Multi-layer perceptron (MLP), LeNet, CNN, LSTM.
+5 main networks: Multi-layer perceptron (MLP), LeNet, CNN, LSTM, FCN.
 
 ### Training
 
@@ -38,8 +40,41 @@ Sample training code: `training/run_experiment.py '{"dataset": "EmnistDataset", 
 
 `train_args` such as `batch_size`, `epochs`
 
+Alternative method to train is to use the Bash scripts in `project/tasks`.
+
 ### Weights & Biases (is also somewhat similar to polyaxon)
 
 I used Weights & Biases to track my experiments and for hyperparameter tuning. Project page is [here](https://wandb.ai/desiree/handwriting-recognition-project_training?workspace=user-desiree). Experiments can be run individually (view the run titled absurd-microwave in my Weights & Biases page) or in multiples. Multiple experiments are defined in json file (`training/experiments/sample.json`).
 
 Sweeps are used for hyperparameter tuning. Hyperparameter values are defined in `training/sweep_emnist.yaml` file. 
+
+## Linting and CI/CD
+
+Linting is the automated checking of source code for programmatic and stylistic errors. 
+
+CI/CD is done using CircleCI. `.circleci/config.yml` contains the various steps in the building of the CI/CD pipeline. It will also run linting, prediction tests and evaluation tests. The linting script is in `project/tasks/lint.sh`. Prediction tests are at `project/text_recognizer/tests/*`. Evaluation tests are at `project/evaluation/*`. 
+
+## Web Deployment
+
+Predictions can be viewed either via a Flask web server or by running a web server in Docker. 
+
+### Use a Flask web server to serve predictions.
+
+`cd project`
+`python api/app.py`
+
+In another terminal, `export API_URL=http://0.0.0.0:8000`.
+`curl "${API_URL}/v1/predict?image_url=http://s3-us-west-2.amazonaws.com/fsdl-public-assets/emnist_lines/or%2Bif%2Bused%2Bthe%2Bresults.png"`
+
+To run unit test for the web server: `tasks/test_api.sh`
+
+### Run web server in Docker
+
+Build Docker image: `sudo tasks/build_api_docker.sh`
+
+Serve the web app: `sudo tasks/run_api_docker.sh`
+
+Run the same curl command above and get the same results.
+
+Extra notes: To connect to a running Docker container, use `sudo docker exec -it api bash`. 
+
