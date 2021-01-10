@@ -19,9 +19,10 @@
         "--save",
         "{\"dataset\": \"IamParagraphsDataset\", \"model\": \"LineDetectorModel\", \"network\": \"fcn\", \"train_args\": {\"batch_size\": 16, \"epochs\": 16}}"
     ],
-    "state": "running",
+    "state": "finished",
     "jobType": null,
     "mode": "run",
     "project": "handwriting-recognition-project_training",
-    "heartbeatAt": "2021-01-09T11:38:53.452948"
+    "heartbeatAt": "2021-01-09T23:45:33.532435",
+    "exitcode": 0
 }
