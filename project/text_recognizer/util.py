@@ -87,14 +87,14 @@ def download_url(url, filename):
         urlretrieve(url, filename, reporthook=t.update_to, data=None)  # nosec
 
 
-# Hide lines below until Lab 6
-# def download_urls(urls, filenames):
-#     """Download urls to filenames in a multi-threaded way."""
-#     with ThreadPoolExecutor() as executor:
-#         futures = [executor.submit(urlretrieve, url, filename) for url, filename in zip(urls, filenames)]
-#         for future in tqdm(as_completed(futures), total=len(futures)):
-#             try:
-#                 future.result()
-#             except Exception as e:  # pylint: disable=broad-except
-#                 print("Error", e)
-# Hide lines above until Lab 6
+# Hide lines below until need to work on FSDL Handwriting Dataset
+def download_urls(urls, filenames):
+    """Download urls to filenames in a multi-threaded way."""
+    with ThreadPoolExecutor() as executor:
+        futures = [executor.submit(urlretrieve, url, filename) for url, filename in zip(urls, filenames)]
+        for future in tqdm(as_completed(futures), total=len(futures)):
+            try:
+                future.result()
+            except Exception as e:  # pylint: disable=broad-except
+                print("Error", e)
+# Hide lines above until need to work on FSDL Handwriting Dataset
