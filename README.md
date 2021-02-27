@@ -61,6 +61,7 @@ Predictions can be viewed either via a Flask web server or by running a web serv
 ### Use a Flask web server to serve predictions
 
 `cd project`
+
 `python api/app.py`
 
 In another terminal, `export API_URL=http://0.0.0.0:8000`.
@@ -70,9 +71,9 @@ To run unit test for the web server: `tasks/test_api.sh`
 
 ### Run web server in Docker
 
-Build Docker image: `sudo tasks/build_api_docker.sh`
+Build Docker image: `tasks/build_api_docker.sh`
 
-Serve the web app: `sudo tasks/run_api_docker.sh`
+Serve the web app: `tasks/run_api_docker.sh`
 
 Run the same curl command above and get the same results.
 
