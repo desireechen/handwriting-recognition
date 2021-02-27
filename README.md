@@ -77,5 +77,5 @@ Serve the web app: `tasks/run_api_docker.sh`
 
 Run the same curl command above and get the same results.
 
-Extra notes: To connect to a running Docker container, use `sudo docker exec -it api bash`. 
+Extra notes: To connect to a running Docker container, use `docker exec -it api bash`. 
 
